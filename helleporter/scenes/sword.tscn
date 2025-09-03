@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b1sq24n6abdt4"]
+
+[node name="Sword" type="RigidBody2D"]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs4dr6srl2l7"]
+
+[ext_resource type="Texture2D" uid="uid://8jan47mslpuj" path="res://assets/sprites/blocktile.png" id="1_6iamk"]
+[ext_resource type="PackedScene" uid="uid://cde5ppaafj178" path="res://scenes/player.tscn" id="2_nsrm0"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Blocktile" type="Sprite2D" parent="."]
+position = Vector2(6, 37)
+texture = ExtResource("1_6iamk")
+
+[node name="Player" parent="." instance=ExtResource("2_nsrm0")]
+position = Vector2(8, 9)
