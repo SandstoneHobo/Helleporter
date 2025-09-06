@@ -1,7 +1,8 @@
 extends Area2D
 
 @onready var hitbox: CollisionShape2D = $Hitbox
-@onready var sprite_2d: Sprite2D = $Hitbox/Sprite2D
+@onready var attack_sprite: Sprite2D = $Hitbox/AttackSprite
+@onready var sword_sprite: Sprite2D = $SwordSprite
 @onready var stats: Node = %Stats
 @onready var attack_timer: Timer = $AttackTimer
 @onready var cooldown_timer: Timer = $CooldownTimer
@@ -10,15 +11,21 @@ var attack_on_cooldown = false
 
 func toggle_hitbox():
 	hitbox.disabled = not hitbox.disabled
-	sprite_2d.visible = not sprite_2d.visible
+	attack_sprite.visible = not attack_sprite.visible
+	sword_sprite.visible = not sword_sprite.visible
 
 #funcion damages all enemies in sword hitbox
 func attack():
-	toggle_hitbox()
-	attack_on_cooldown = true
-	attack_timer.start()
-	cooldown_timer.start()
+	if not attack_on_cooldown:
+		toggle_hitbox()
+		attack_on_cooldown = true
+		attack_timer.start()
+		cooldown_timer.start()
 	
+func _ready() -> void:
+	hitbox.disabled = true
+	attack_sprite.visible = false
+	sword_sprite.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	hitbox.look_at(get_global_mouse_position())

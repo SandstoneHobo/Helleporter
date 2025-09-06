@@ -2,14 +2,12 @@ extends CharacterBody2D
 
 var max_health := 10
 var cur_health := 10
-var damage := 1
-var player_position = Vector2(0,0)
 var move_speed = 1
 var attack_damage = 1
 
+var player_position = Vector2(0,0)
 var attack_on_cooldown = false
 
-@onready var game_manager: Node = %GameManager
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var ray_cast: RayCast2D = $RayCast2D
 
@@ -35,7 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if cur_health <= 0:
 		self.queue_free()
-	player_position = game_manager._get_player_position()
+	player_position = GameManager.get_player_position()
 	ray_cast.look_at(player_position)
 	attack()
 	

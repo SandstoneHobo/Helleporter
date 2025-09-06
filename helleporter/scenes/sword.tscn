@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bvwhy0f6x6gxd" path="res://scripts/sword.gd" id="1_s4ec8"]
 [ext_resource type="Texture2D" uid="uid://wm6xfkthsxpw" path="res://assets/sprites/sword_sprite.png" id="1_ycbs3"]
-[ext_resource type="Texture2D" uid="uid://cuh6l0kme143s" path="res://assets/sprites/hitbox_test.png" id="3_s4ec8"]
+[ext_resource type="Texture2D" uid="uid://ckxn8ivurggtw" path="res://assets/sprites/sword_swing.png" id="3_s4ec8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_n355p"]
-a = Vector2(1.33333, -3.33333)
-b = Vector2(1.33333, 1.66667)
+a = Vector2(1.625, -3.33333)
+b = Vector2(1.625, 1.33333)
 
 [node name="Sword" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_s4ec8")
 
 [node name="SwordSprite" type="Sprite2D" parent="."]
@@ -18,11 +19,9 @@ texture = ExtResource("1_ycbs3")
 position = Vector2(-4, 3)
 scale = Vector2(8, 3)
 shape = SubResource("SegmentShape2D_n355p")
-disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
-visible = false
-position = Vector2(1.33333, -0.833333)
+[node name="AttackSprite" type="Sprite2D" parent="Hitbox"]
+position = Vector2(1.375, -0.666667)
 scale = Vector2(0.1875, 0.3125)
 texture = ExtResource("3_s4ec8")
 
@@ -30,6 +29,7 @@ texture = ExtResource("3_s4ec8")
 wait_time = 0.3
 
 [node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

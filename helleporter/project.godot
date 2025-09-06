@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Helleporter"
-run/main_scene="uid://cs4dr6srl2l7"
+run/main_scene="uid://dkclcux0hmsif"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scenes/game_manager.tscn"
 
 [global_group]
 

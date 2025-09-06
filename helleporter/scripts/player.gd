@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var teleport_timer: Timer = $TeleportTimer
 @onready var sword: Area2D = $Sword
 @onready var skin: Sprite2D = $Skin
-@onready var game_manager: Node = %GameManager
 @onready var stats: Node = $Stats
 
 var teleport_on_cooldown := false
@@ -18,14 +17,14 @@ func _on_teleport_timer_timeout() -> void:
 	teleport_on_cooldown = false
 
 func _ready() -> void:
-	game_manager._set_player_position(self.global_position)
+	GameManager.set_player_position(self.global_position)
 
 func _process(_delta: float) -> void:
 	if stats.cur_health <= 0:
-		self.queue_free()
+		get_tree().change_scene_to_file("res://scenes/ui/respawn_screen.tscn")
 	
 	#broadcasts position to game manager for enemy pathfinding
-	game_manager._set_player_position(self.global_position)
+	GameManager.set_player_position(self.global_position)
 	#checks if the player presses the teleport button while the skill is available
 	if Input.is_action_just_pressed("teleport") and not teleport_on_cooldown:
 		self.global_position = get_global_mouse_position()

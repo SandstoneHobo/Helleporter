@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkclcux0hmsif"]
+
+[ext_resource type="Script" uid="uid://baawnd85ujc7m" path="res://scripts/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://cuh6l0kme143s" path="res://assets/sprites/hitbox_test.png" id="2_fe2o3"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sl1te")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fe2o3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.216
+anchor_right = 0.611
+anchor_bottom = 0.79
+offset_left = -0.437042
+offset_top = 0.0319977
+offset_right = -0.260986
+offset_bottom = 0.0799866
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.394
+anchor_top = 0.231
+anchor_right = 0.597
+anchor_bottom = 0.312
+offset_left = -0.494019
+offset_top = 0.311996
+offset_right = -0.147034
+offset_bottom = -0.17601
+theme_override_font_sizes/font_size = 28
+text = "Helleporter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
