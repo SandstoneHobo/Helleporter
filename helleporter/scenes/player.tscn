@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cde5ppaafj178"]
+[gd_scene load_steps=11 format=3 uid="uid://cde5ppaafj178"]
 
 [ext_resource type="Script" uid="uid://bnuj6uxjkvhyr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bkuck1rq5yiid" path="res://scripts/player_stats.gd" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://fjkntxy8mfrb" path="res://assets/sprites/player_sprite.png" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://b1sq24n6abdt4" path="res://scenes/sword.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dlyq74up0fhum" path="res://scripts/helleport_area.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://1cpix5kj1wnf" path="res://scripts/sword_upgrades.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://pr2ydwet5o6y" path="res://scripts/helleport_upgrades.gd" id="7_ur7pv"]
+[ext_resource type="Script" uid="uid://ba85dilofqx3k" path="res://scripts/demonic_upgrades.gd" id="8_y4r1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(7, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -29,10 +36,35 @@ position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
 
 [node name="TeleportTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 2.0
 
 [node name="Sword" parent="." instance=ExtResource("3_qhqgy")]
+unique_name_in_owner = true
 position = Vector2(8, 0)
+
+[node name="HelleportArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_qlg0r")
+
+[node name="HelleportHitbox" type="CollisionShape2D" parent="HelleportArea"]
+shape = SubResource("CircleShape2D_dqkch")
+disabled = true
+
+[node name="HitTimer" type="Timer" parent="HelleportArea"]
+wait_time = 0.3
+
+[node name="UpgradeManager" type="Node" parent="."]
+
+[node name="SwordUpgrades" type="Node" parent="UpgradeManager"]
+script = ExtResource("6_smehm")
+
+[node name="HelleportUpgrades" type="Node" parent="UpgradeManager"]
+script = ExtResource("7_ur7pv")
+
+[node name="DemonicUpgrades" type="Node" parent="UpgradeManager"]
+script = ExtResource("8_y4r1p")
 
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HelleportArea" to="HelleportArea" method="_on_body_entered"]
+[connection signal="timeout" from="HelleportArea/HitTimer" to="HelleportArea" method="_on_hit_timer_timeout"]

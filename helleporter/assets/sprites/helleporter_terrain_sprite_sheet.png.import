@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8jan47mslpuj"
-path="res://.godot/imported/blocktile.png-5a2b4b393875a1d4496414ea66aeca2d.ctex"
+uid="uid://53mws2ex48gx"
+path="res://.godot/imported/helleporter_terrain_sprite_sheet.png-f4b00470d82895f74775fb15f0ea89cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blocktile.png"
-dest_files=["res://.godot/imported/blocktile.png-5a2b4b393875a1d4496414ea66aeca2d.ctex"]
+source_file="res://assets/sprites/helleporter_terrain_sprite_sheet.png"
+dest_files=["res://.godot/imported/helleporter_terrain_sprite_sheet.png-f4b00470d82895f74775fb15f0ea89cb.ctex"]
 
 [params]
 

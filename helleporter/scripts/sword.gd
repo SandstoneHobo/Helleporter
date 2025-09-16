@@ -42,3 +42,4 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_on_cooldown = false
+	cooldown_timer.stop()

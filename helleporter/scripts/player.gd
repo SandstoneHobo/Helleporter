@@ -4,8 +4,15 @@ extends CharacterBody2D
 @onready var sword: Area2D = $Sword
 @onready var skin: Sprite2D = $Skin
 @onready var stats: Node = $Stats
+@onready var helleport_area: Area2D = $HelleportArea
+@onready var upgrade_manager: Node = $UpgradeManager
 
 var teleport_on_cooldown := false
+var cur_level = 1
+var exp_thresholds = {"2": 10, "3": 15, "4": 20, "5": 25, "6": 30, "7":35}
+
+#TODO make an experience system for upgrades
+var experience = 0
 
 func deal_damage():
 	sword.attack()
@@ -15,19 +22,27 @@ func take_damage(amount: int):
 
 func _on_teleport_timer_timeout() -> void:
 	teleport_on_cooldown = false
+	teleport_timer.stop()
 
 func _ready() -> void:
 	GameManager.set_player_position(self.global_position)
 
 func _process(_delta: float) -> void:
+	var cur_experience = GameManager.get_experience()
 	if stats.cur_health <= 0:
+		GameManager.add_experience(-1 * cur_experience)
 		get_tree().change_scene_to_file("res://scenes/ui/respawn_screen.tscn")
-	
+	if cur_level < 7:
+		if cur_experience > exp_thresholds[str(cur_level + 1)]:
+			for upgrade in upgrade_manager.get_children():
+				upgrade.activate(cur_level)
+			cur_level += 1
 	#broadcasts position to game manager for enemy pathfinding
 	GameManager.set_player_position(self.global_position)
 	#checks if the player presses the teleport button while the skill is available
-	if Input.is_action_just_pressed("teleport") and not teleport_on_cooldown:
+	if Input.is_action_just_pressed("teleport") and not teleport_on_cooldown and GameManager.can_player_teleport():
 		self.global_position = get_global_mouse_position()
+		helleport_area.attack()
 		teleport_on_cooldown = true
 		teleport_timer.start()
 		
