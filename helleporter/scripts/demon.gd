@@ -37,8 +37,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if cur_health <= 0:
-		self.queue_free()
 		GameManager.add_experience(1)
+		self.queue_free()
 	player_position = GameManager.get_player_position()
 	ray_cast.look_at(player_position)
 	attack()

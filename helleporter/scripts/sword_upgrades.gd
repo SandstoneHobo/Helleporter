@@ -17,9 +17,10 @@ func activate(level):
 		4:
 			stats.attack_damage = stats.attack_damage * 3
 		5:
-			sword.get_child(1).apply_scale(Vector2(3, 3))
-		6:
 			stats.max_health += 20
+			stats.cur_health = stats.max_health
+		6:
+			stats.max_health += 30
 			stats.cur_health = stats.max_health
 		7:
 			stats.attack_damage = stats.attack_damage * 5

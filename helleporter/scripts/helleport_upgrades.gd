@@ -9,7 +9,6 @@ func activate(level):
 	match level:
 		1:
 			helleport_area.get_child(0).apply_scale(Vector2(2, 2))
-			print("helleport activated")
 		2:
 			stats.helleport_damage = stats.helleport_damage * 3
 		3:

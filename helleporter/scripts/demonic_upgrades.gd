@@ -12,7 +12,6 @@ func activate(level):
 		1:
 			stats.attack_damage = stats.attack_damage * 2
 			stats.helleport_damage = stats.helleport_damage * 2
-			print("demon activated")
 		2:
 			sword.get_child(1).apply_scale(Vector2(2, 2))
 			helleport_area.get_child(0).apply_scale(Vector2(2, 2))

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq5x48hqnvcxg"]
+[gd_scene load_steps=4 format=3 uid="uid://bq5x48hqnvcxg"]
 
 [ext_resource type="Script" uid="uid://c7e4h88cu4ysv" path="res://scripts/demon.gd" id="1_3t42y"]
 [ext_resource type="Texture2D" uid="uid://cevmlnoimu4tx" path="res://assets/sprites/demon_sprite.png" id="1_ye80u"]
-[ext_resource type="Texture2D" uid="uid://cuh6l0kme143s" path="res://assets/sprites/hitbox_test.png" id="3_ofewj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t42y"]
 size = Vector2(11, 16)
@@ -27,11 +26,6 @@ position = Vector2(0, 3)
 scale = Vector2(2, 2)
 target_position = Vector2(4.5, 0)
 collision_mask = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="RayCast2D"]
-position = Vector2(7, 0)
-scale = Vector2(0.09375, 0.21875)
-texture = ExtResource("3_ofewj")
 
 [node name="HitTimer" type="Timer" parent="."]
 wait_time = 0.5

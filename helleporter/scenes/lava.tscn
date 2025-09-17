@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bstblnsig04j1"]
+
+[ext_resource type="Texture2D" uid="uid://53mws2ex48gx" path="res://assets/sprites/helleporter_terrain_sprite_sheet.png" id="1_a5s42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw3wf"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snnrc"]
+atlas = ExtResource("1_a5s42")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f10td"]
+atlas = ExtResource("1_a5s42")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w25c"]
+atlas = ExtResource("1_a5s42")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxvwp"]
+atlas = ExtResource("1_a5s42")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgx88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snnrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f10td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w25c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxvwp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[node name="Lava" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dw3wf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pgx88")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.356333
