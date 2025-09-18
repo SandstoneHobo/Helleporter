@@ -26,6 +26,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="Stats" type="Node" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("2_dqkch")
 
 [node name="Skin" type="Sprite2D" parent="."]
@@ -44,10 +45,12 @@ wait_time = 2.0
 
 [node name="Sword" parent="." instance=ExtResource("3_qhqgy")]
 unique_name_in_owner = true
+process_mode = 3
 position = Vector2(8, 0)
 
 [node name="HelleportArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("5_qlg0r")
 
 [node name="HelleportHitbox" type="CollisionShape2D" parent="HelleportArea"]
@@ -59,6 +62,7 @@ wait_time = 0.3
 
 [node name="UpgradeManager" type="Node" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("6_d2wvv")
 
 [node name="SwordUpgrades" type="Node" parent="UpgradeManager"]
@@ -102,6 +106,7 @@ vertical_alignment = 1
 script = ExtResource("10_y4r1p")
 
 [node name="LevelUpMenu" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 2
 visible = false
 script = ExtResource("12_3v2ag")
@@ -130,10 +135,10 @@ layout_mode = 2
 [node name="DemonicUpgrade" type="Button" parent="LevelUpMenu/HBoxContainer"]
 layout_mode = 2
 
-[connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="HelleportArea" to="HelleportArea" method="_on_body_entered"]
 [connection signal="timeout" from="HelleportArea/HitTimer" to="HelleportArea" method="_on_hit_timer_timeout"]
-[connection signal="pressed" from="LevelUpMenu/HBoxContainer/SwordUpgrade" to="LevelUpMenu/HBoxContainer" method="_on_sword_upgrade_pressed"]
-[connection signal="pressed" from="LevelUpMenu/HBoxContainer/HelleportUpgrade" to="LevelUpMenu/HBoxContainer" method="_on_helleport_upgrade_pressed"]
-[connection signal="pressed" from="LevelUpMenu/HBoxContainer/DemonicUpgrade" to="LevelUpMenu/HBoxContainer" method="_on_demonic_upgrade_pressed"]
+[connection signal="pressed" from="LevelUpMenu/HBoxContainer/SwordUpgrade" to="LevelUpMenu" method="_on_sword_upgrade_pressed"]
+[connection signal="pressed" from="LevelUpMenu/HBoxContainer/HelleportUpgrade" to="LevelUpMenu" method="_on_helleport_upgrade_pressed"]
+[connection signal="pressed" from="LevelUpMenu/HBoxContainer/DemonicUpgrade" to="LevelUpMenu" method="_on_demonic_upgrade_pressed"]

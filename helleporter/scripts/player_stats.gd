@@ -9,7 +9,7 @@ var helleport_damage := 10
 
 #stats for play exp system
 var cur_level = 1
-var exp_thresholds = {"2": 10, "3": 15, "4": 20, "5": 25, "6": 30, "7":35}
+var exp_thresholds = [0, 10, 15, 20, 25, 30, 35]
 
 #upgrade stats
 var sword_influence = 0

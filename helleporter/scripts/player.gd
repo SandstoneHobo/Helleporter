@@ -31,13 +31,12 @@ func _process(_delta: float) -> void:
 	if stats.cur_health <= 0:
 		GameManager.add_experience(-1 * cur_experience)
 		get_tree().change_scene_to_file("res://scenes/ui/respawn_screen.tscn")
-	if stats.cur_level < 7:
-		if cur_experience >= stats.exp_thresholds[str(stats.cur_level + 1)]:
-			level_up_menu.toggle_menu()
-			upgrade_manager.upgrade_sword(stats.cur_level)
-			upgrade_manager.upgrade_helleport(stats.cur_level)
-			upgrade_manager.upgrade_demonic(stats.cur_level)
+		
+	if stats.cur_level < 8:	
+		if cur_experience >= stats.exp_thresholds[stats.cur_level - 1]:
+			level_up_menu.open_menu()
 			stats.cur_level += 1
+	
 	#broadcasts position to game manager for enemy pathfinding
 	GameManager.set_player_position(self.global_position)
 	#checks if the player presses the teleport button while the skill is available
