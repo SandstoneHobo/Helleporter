@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-var max_health := 10
-var cur_health := 10
+var max_health = 10
+var cur_health = 10
 var move_speed = 1
 var attack_damage = 1
+var cur_level = 1
 
 var player_position = Vector2(0,0)
 var attack_on_cooldown = false
@@ -12,6 +13,12 @@ var attack_on_cooldown = false
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var hit_timer: Timer = $HitTimer
+
+func update_stats(level):
+	max_health = 10 * level
+	cur_health = 10 * level
+	move_speed = 1 * level
+	attack_damage = 1 * level
 
 func _on_attack_cooldown_timeout() -> void:
 	attack_on_cooldown = false
@@ -36,12 +43,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var mob_level = GameManager.get_mob_level()
+	if mob_level > cur_level:
+		update_stats(mob_level)
+		cur_level = mob_level
 	if cur_health <= 0:
 		GameManager.add_experience(1)
 		self.queue_free()
 	player_position = GameManager.get_player_position()
 	ray_cast.look_at(player_position)
 	attack()
+	
 	
 func _physics_process(delta: float) -> void:
 	var x_delta = self.global_position.x - player_position.x

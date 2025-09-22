@@ -4,3 +4,8 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_hwd4i")
+
+[node name="MobUpgradeTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="timeout" from="MobUpgradeTimer" to="." method="_on_mob_upgrade_timer_timeout"]

@@ -126,19 +126,25 @@ alignment = 1
 
 [node name="SwordUpgrade" type="Button" parent="LevelUpMenu/HBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "
 "
 
 [node name="HelleportUpgrade" type="Button" parent="LevelUpMenu/HBoxContainer"]
 layout_mode = 2
+disabled = true
 
 [node name="DemonicUpgrade" type="Button" parent="LevelUpMenu/HBoxContainer"]
 layout_mode = 2
+disabled = true
 
-[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
+[node name="ButtonsUsableTimer" type="Timer" parent="LevelUpMenu"]
+
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="body_entered" from="HelleportArea" to="HelleportArea" method="_on_body_entered"]
 [connection signal="timeout" from="HelleportArea/HitTimer" to="HelleportArea" method="_on_hit_timer_timeout"]
 [connection signal="pressed" from="LevelUpMenu/HBoxContainer/SwordUpgrade" to="LevelUpMenu" method="_on_sword_upgrade_pressed"]
 [connection signal="pressed" from="LevelUpMenu/HBoxContainer/HelleportUpgrade" to="LevelUpMenu" method="_on_helleport_upgrade_pressed"]
 [connection signal="pressed" from="LevelUpMenu/HBoxContainer/DemonicUpgrade" to="LevelUpMenu" method="_on_demonic_upgrade_pressed"]
+[connection signal="timeout" from="LevelUpMenu/ButtonsUsableTimer" to="LevelUpMenu" method="_on_buttons_usable_timer_timeout"]

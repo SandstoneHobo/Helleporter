@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bstblnsig04j1"]
+[gd_scene load_steps=9 format=3 uid="uid://bstblnsig04j1"]
 
 [ext_resource type="Texture2D" uid="uid://53mws2ex48gx" path="res://assets/sprites/helleporter_terrain_sprite_sheet.png" id="1_a5s42"]
+[ext_resource type="Script" uid="uid://cjc61stq112i4" path="res://scripts/lava.gd" id="1_dw3wf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw3wf"]
 size = Vector2(16, 16)
@@ -42,6 +43,8 @@ animations = [{
 }]
 
 [node name="Lava" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_dw3wf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dw3wf")
@@ -50,4 +53,6 @@ shape = SubResource("RectangleShape2D_dw3wf")
 sprite_frames = SubResource("SpriteFrames_pgx88")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.356333
+frame_progress = 0.87346584
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
